@@ -3,11 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let users = JSON.parse(localStorage.getItem("users")) || [];
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
-const priorityMap = new Map([
-  ["High",3],
-  ["Medium",2],
-  ["Low",1]
-]);
+
 
 const authSection = document.getElementById("authSection");
 const dashboard = document.getElementById("dashboard");
@@ -41,7 +37,14 @@ function renderTasks(filteredTasks){
 
   if(filteredTasks) userTasks = filteredTasks;
 
+  
+ const priorityMap = new Map([
+  ["High",3],
+  ["Medium",2],
+  ["Low",1]
+]);
   userTasks.sort((a,b) => priorityMap.get(b.priority) - priorityMap.get(a.priority));
+ 
 
   let container = document.getElementById("taskContainer");
   container.innerHTML = "";
