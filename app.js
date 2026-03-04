@@ -31,6 +31,9 @@ function showAuth(){
   navbar.classList.add("d-none");
 }
 
+
+
+
 function renderTasks(filteredTasks){
   let currentUser = sessionStorage.getItem("user");
   let userTasks = tasks.filter(t => t.user === currentUser);
@@ -38,6 +41,7 @@ function renderTasks(filteredTasks){
   if(filteredTasks) userTasks = filteredTasks;
 
   
+
  const priorityMap = new Map([
   ["High",3],
   ["Medium",2],
@@ -45,6 +49,8 @@ function renderTasks(filteredTasks){
 ]);
   userTasks.sort((a,b) => priorityMap.get(b.priority) - priorityMap.get(a.priority));
  
+
+
 
   let container = document.getElementById("taskContainer");
   container.innerHTML = "";
@@ -54,6 +60,8 @@ function renderTasks(filteredTasks){
     if(task.priority==="High") badge="danger";
     else if(task.priority==="Medium") badge="warning";
     else badge="success";
+
+
 
     let today = new Date().toISOString().split("T")[0];
     if(task.dueDate < today && task.status !== "Completed") badge="dark";
@@ -76,6 +84,12 @@ function renderTasks(filteredTasks){
   });
 }
 
+
+
+
+
+
+
 window.deleteTask = function(id){
   tasks = tasks.filter(t => t.id !== id);
   saveTasks();
@@ -83,6 +97,8 @@ window.deleteTask = function(id){
   updateStats();
   updateCategories();
 };
+
+
 
 function updateCategories(){
   let currentUser = sessionStorage.getItem("user");
@@ -97,6 +113,8 @@ function updateCategories(){
     categoryFilter.innerHTML += `<option value="${cat}">${cat}</option>`;
   });
 }
+
+
 
 function updateStats(){
   let currentUser = sessionStorage.getItem("user");
@@ -224,6 +242,8 @@ statusFilter.onchange = function(){
   }
   renderTasks(filtered);
 };
+
+
 
 categoryFilter.onchange = function(){
   let currentUser = sessionStorage.getItem("user");
